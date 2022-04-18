@@ -10,6 +10,11 @@ public class BinarySearch{
         System.out.println(recursiveBinarySearch(testArr2, 5, 0, testArr2.length));
         System.out.println(recursiveBinarySearch(testArr3, 1, 0, testArr3.length));
         System.out.println(recursiveBinarySearch(testArr4, 293, 0, testArr4.length));
+
+        System.out.println(iterativeBinarySearch(testArr1, 2));
+        System.out.println(iterativeBinarySearch(testArr2, 5));
+        System.out.println(iterativeBinarySearch(testArr3, 1));
+        System.out.println(iterativeBinarySearch(testArr4, 293));
     }
 
     private static int recursiveBinarySearch(int[] arr, int target, int low, int high){
@@ -30,5 +35,24 @@ public class BinarySearch{
         }
     }
 
-    // TODO: iterative approach/implementation
+    private static int iterativeBinarySearch(int[] arr, int target){
+        if(arr.length == 0) return -1;
+
+        int low = 0;
+        int high = arr.length;
+
+        while(high - low > 1){
+            int middle = (low + high) / 2;
+
+            if(arr[middle] == target) return middle;
+
+            if(arr[middle - 1] >= target){
+                high = middle;
+            } else{
+                low = middle;
+            }
+        }
+
+        return -1;
+    }
 }
